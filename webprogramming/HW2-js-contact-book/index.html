@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> My scary contact book</title>
+        <meta charset="utf-8">
+        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link href="style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body> 
+        <div id="header">
+            <div><img src="https://openclipart.org/people/SeriousTux/Little_Miss_Muffet_Spider.svg" id="spider"></img>
+            <h1> My scary contact book </h1>
+            <div id="searchSort"> 
+                <form name="searchform" id="searchform" onSubmit = "return findContact(this.form)">
+                    <input type="text" name="searchtext" />
+                    <button name="searchsubmit" type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </form>
+                <form name="sorting" id="sorting" onSubmit="return mysort(this.form)">
+                    <button name="sortsubmit" type="submit">
+                        <i class="fa fa-sort-amount-desc"></i>
+                    </button>
+                    <select name="selectSort" form="sorting">
+                        <option value="firstname">First name</option>
+                        <option value="lastname">Last name</option>
+                        <option value="email">E-mail</option>
+                        <option value="tel">Telephon</option>
+                    </select>
+                </form>
+                <button id="addContactButton"> <i class="fa fa-plus-square"></i> </button>
+            </div> <!--searchSort-->
+            <div id="placeForForm" class="visible"> 
+                <form name="addContact" id="addContact" onSubmit="return submitForm(this.form)">
+                    <input type="text" placeholder="First name" name="firstname"></input>
+                    <input type="text" placeholder="Last name" name="lastname"></input>
+                    <input type="text" placeholder="Phone number" name="telephon"></input>
+                    <input type="text" placeholder="E-mail" name="email"></input>
+                    <button type="submit" name="addButton" value="Add contact">Add contact</button>    
+                </form>
+            </div> <!--placeForForm-->
+        </div><!--header-->
+       
+        <ul id="contactList">
+        </ul> <!--contactList-->
+        <script language="JavaScript" type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <script language="JavaScript" type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+        <script language="JavaScript" type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/json2/20130526/json2.js"></script>
+        <script language="JavaScript" type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/json2/20130526/json_parse_state.min.js"></script>
+         <script language="JavaScript" type="text/javascript" src="function.js"></script>
+
+    </body>
+</html>
+

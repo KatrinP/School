@@ -1,0 +1,64 @@
+@import url(http://fonts.googleapis.com/css?family=Rock+Salt);
+
+body {
+    text-align: center; 
+    padding: 30px;
+    min-width: 900px;
+}
+
+li {
+    list-style-type: none;
+    border-bottom: thick dotted grey;
+    padding: 10px;
+}
+
+#searchSort {
+    clear: both;
+    padding: 30px;
+    float: right;
+    text-align: right;
+    margin-top: -115px
+
+}
+
+#placeForForm {
+    clear: both;
+    float: right;
+    width: 400px;
+    padding-right: 30px;
+    text-align: right;
+}
+
+#contactList {
+    clear: right;
+
+}
+#header {
+    width: 100%;
+
+}
+h1
+ {
+    display: block;
+    margin: auto;
+    padding: 30px;
+    padding-top: 60px;
+    width: 600px;
+    height: 115px; 
+    font-family: 'Rock Salt', cursive;
+
+}
+.mybutton {
+    margin-left: 15px;
+}
+
+.visible{
+    display:none;
+}
+
+#spider {
+    float: left;
+    padding-left: 20px;
+    width: 150px;    
+
+}
