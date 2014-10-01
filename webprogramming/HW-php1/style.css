@@ -1,22 +1,93 @@
+@import url(http://fonts.googleapis.com/css?family=Calligraffitti);
+
 body {
 	text-align: center;
 }
+h1 {
+    font-family: 'Calligraffitti', cursive;
+    font-weight: bold; 
+    
+}
+
+#slogan {
+    font-family: 'Calligraffitti', cursive;
+    font-size: 18px;
+}
+#header {
+    border-bottom: thick dotted gray;
+    padding : 20px;
+}
+#promo {
+    background-color: WhiteSmoke;
+    padding: 10px;
+}
+
+#calltoaction{
+    font-size: 20px;
+}
+
+#orderForm {
+    padding: 0px 10px 10px 10px;
+    background-color: WhiteSmoke;
+}
+
+#missing {
+    background-color: Tomato;
+    padding: 5px;
+    margin: 0px;
+}
+
+.texfield {
+    margin: 15px;
+}
+
+.radiobuttons {
+    margin: 5px;
+}
+
 .magazine {
 	display: inline-block;
-	border: solid 1px black;
+	border: dotted gray;
 	margin: 15px;
-	height: 250px;
-	width: 200px;
+	height: 300px;
+	width: 220px;
 	padding: 5px;
 }
 
 .picture {
 	width: 100px;
 	height: 150px;
+	padding: 10px;
 }
+
+.magazinename {
+    font-size: 20px;
+    height: 60px;
+    padding: 10px;
+	vertical-align: middle;
+}
+
+.price {
+    font-weight: bold; 
+}
+
+#lengthOfSub {
+    padding: 15px;
+}
+
 #buybutton {
 	margin: 15px;
+}
 
+#selectperiod {
+    -webkit-appearance: none; 
+    -moz-appearance: none;
+    border: 2px inset;
+    background-color: white;
+    text-indent: 0px;
+    text-shadow: none;
+    
+    
 }
 
 .hightlight {
@@ -25,8 +96,33 @@ body {
   -ms-transition: all 0.30s ease-in-out;
   -o-transition: all 0.30s ease-in-out;
   outline: none;
-  padding: 3px 0px 3px 3px;
-  margin: 5px 1px 3px 0px;
   border: 1px solid red;
 }
 
+#response {
+    background-color: WhiteSmoke;
+    padding: 10px;
+}
+#claim {
+    font-size: 20px;
+    font-weight: bold;     
+}
+#content {
+    padding-bottom: 100px; #for footer
+    background-color: WhiteSmoke;
+}
+#footer {
+    border-top: thick dotted darkgray;
+    padding: 10px;
+    height: 100px;  
+    width: 100%;
+    background-color: LightGray ;
+    position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
+#all {
+	min-height: 100%;
+	position:relative;
+}
