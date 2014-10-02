@@ -16,8 +16,8 @@
     
     include 'Magazine.class.php';
     include 'Subscription.class.php';
-
-	if (!(isset($_POST['submit']))) {
+    $permittedperiod = [6, 12, 18, 24];
+	if (!isset($_POST['submit'])) {
 	?> 
             <div id ="promo">
                 <p>Are you <strong>too tired</strong> to tell to children your own bedtime stories? Don't worry! We have a lot of original stories and fairytales for your e-book.</p>
@@ -38,10 +38,9 @@
 					<br>
 					<div id="lengthOfSub">Subscription period: 
 		    		<select name="period" id="selectperiod">
-						<option value="6">6 months</option>
-                        <option value="12">12 months</option>
-                        <option value="18">18 months</option>
-                        <option value="24">24 months</option>
+		    		    <?php foreach ($permittedperiod as $numbermonths) {
+		    		        ?><option value="<?php echo $numbermonths?>"><?php echo $numbermonths?> months</option>
+		    		    <?php }?>
                     </select>
 					</div>
 					<input type="submit" name="submit" value="Buy" class="btn btn-success btn-lg">
@@ -51,26 +50,59 @@
 }
 
 else {
+    $errormissing = '<ul class="errormissing">';
     if (!empty($_POST["firstname"])) {
         $firstname = htmlspecialchars($_POST["firstname"]);
-        $filled[0] = true;}
-    else {$filled[0] = false;}
+        $filled[0] = true;
+    }
+    else {
+        $filled[0] = false;
+        $errormissing = $errormissing . "<li>Please fill in your first name.</li>";
+    }
     if (!empty($_POST["lastname"])) {
         $lastname = htmlspecialchars($_POST["lastname"]);
-        $filled[1] = true;}
-    else {$filled[1] = false;}
-    if ((!empty($_POST["email"])) and preg_match("/^[\w\.]+@\w+\...+$/", $_POST["email"])) {
-        $email = htmlspecialchars($_POST["email"]);
-        $filled[2] = true;}
-    else {$filled[2] = false;}
+        $filled[1] = true;
+    }
+    else {
+        $filled[1] = false;
+        $errormissing = $errormissing . "<li>Please fill in your last name.</li>";
+    }
+    if (!empty($_POST["email"])) {
+        if (preg_match("/^[\w\.]+@\w+\...+$/", $_POST["email"])) {
+            $email = htmlspecialchars($_POST["email"]);
+            $filled[2] = true;
+        }
+        else {
+            $filled[2] = false;
+            $errormissing = $errormissing . "<li>Please fill in a correct email.</li>";
+        }  
+    }      
+    else {
+        $filled[2] = false;
+            $errormissing = $errormissing . "<li>Please fill in your email.</li>";
+    }
     if (!empty($_POST["gender"])) {
         $gender = $_POST["gender"];
-        $filled[3] = true;}
-    else {$filled[3] = false;}
+        $filled[3] = true;
+    }
+    else {
+        $filled[3] = false;
+        $errormissing = $errormissing . "<li>Please fill in your gender.</li>"; 
+    }
     if (!empty($_POST["period"])) {
-        $period = $_POST["period"];
-        $filled[4] = true;}
-    else {$filled[4] = false;}
+        if (in_array($_POST["period"], $permittedperiod)) {
+            $period = $_POST["period"];
+            $filled[4] = true;
+        }
+        else {
+            $filled[4] = false;
+            $errormissing = $errormissing . "<li>Please don't hack the subscription period.</li>";
+        }
+    }
+    else {
+        $filled[4] = false;
+        $errormissing = $errormissing . "<li>Please fill in subscription period.</li>";
+    }
     $numberOrdered = 0;    
     if (!empty($_POST["mytitle"])) {
         $filled[5] = true;
@@ -83,8 +115,11 @@ else {
             }
         }
     }
-    else {$filled[5] = false;}
-    
+    else {
+        $filled[5] = false;
+        $errormissing = $errormissing . "<li>Please choose at least one magazine.</li>";
+    }
+    $errormissing = $errormissing . "</ul>";
 	if ($filled[0] == true
 		&& $filled[1] == true
 		&& $filled[2] == true
@@ -107,7 +142,7 @@ else {
 			<p> <strong>Magazine(s): </strong><?php
 		$suma = 0;	
 	    if (is_array($_POST["mytitle"])) {
-	        echo '<ul class="list-unstyled">';
+	        ?><ul class="list-unstyled"><?php
 		    foreach ($_POST["mytitle"] as $magazineid) {
 		        foreach ($ktmagazines as $magazine) {
 		            if ($magazine->id == $magazineid) {
@@ -118,7 +153,7 @@ else {
 		                        
 		        }   
 		    }
-		    echo '</ul>';
+		    ?></ul><?php
 		    $suma = $suma * $period;
 		    switch (true) {
 		        case $numberOrdered == 2:
@@ -149,11 +184,12 @@ else {
 		            echo '(discount 15 %!)';     
 		            break;  
 		        default:
-		            echo '(no discount... order more magazines and get discount!)';
+		            echo '(no discount...)';
 		            break;    
 		    }?>
                 </p>
-            <p id="claim"> Enjoy your time with your children! </p>    		   
+            <p id="claim"> Enjoy your time with your children! </p>    	
+            <p id="smartadd">Actually, this is just a homework. If you realy want to have some e-book with fairy tales, you can buy it here: <a href="https://www.boobook.cz/kategorie/pro-deti-a-mladez">BOObook.cz</a> (in czech).</p>	   
 		    </div> <!--response-->
         <?php
 	    }
@@ -163,25 +199,29 @@ else {
                 <p> There are 10 stories in each online magazine. Order 3 different magazines and <strong>get story for every day in month</strong> - and discount of 15 %!</p><br/>
                 <p id="calltoaction"> Fill in your name and select the best stories for you and your children:<p>
             </div>
-            <p id="missing">Ooops! It seems you forgot to fill in some field in the form... </p>
+            <div id="missing">
+                <p>Ooops! It seems there's something wrong with your form: </p>
+                <?php echo $errormissing ?>
+            </div>
+            
             <div id="orderForm">
                 <form action="#" name="subscribeform" method="POST">
-                    <input type="text" placeholder="First name" name="firstname" class="texfield<?php if ($filled[0] == true) {echo '" value="' . $firstname . '"';} else {echo ' hightlight"';}?>>
-
-
-                    <input type="text" placeholder="Last name" name="lastname" class="texfield<?php if ($filled[1] == true) {echo '" value="' . $lastname . '"';} else {echo ' hightlight"';}?>>
-                    <input type="text" placeholder="E-mail" name="email" class="texfield<?php if ($filled[2] == true) {echo '" value="' . $email . '"';} else {echo ' hightlight"';}?>>
-                    <?php if ($filled[3] == true) {?>
-                    <span class="radiobuttons"> <input type="radio" name="gender" value="female"<?php if ($gender == "female") {echo ' checked';}?>>Female</span>
-                    <span class="radiobuttons"> <input type="radio" name="gender" value="male"<?php if ($gender == "male") {echo ' checked';}?>>Male</span>
-					<br>
+                    <input type="text" placeholder="First name" name="firstname" class="texfield<?php if (!$filled[0]) {echo ' hightlight';}?>" <?php if ($filled[0]) {echo 'value="' . $firstname . '"';}?>>
+                    
+                    <input type="text" placeholder="Last name" name="lastname" class="texfield<?php if (!$filled[1]) {echo ' hightlight';}?>" <?php if ($filled[1]) {echo 'value="' . $lastname . '"';}?>>
+                    
+                    <input type="text" placeholder="E-mail" name="email" class="texfield<?php if (!$filled[2]) {echo ' hightlight';}?>" <?php if ($filled[2]) {echo 'value="' . $email . '"';}?>>
+                    <?php if ($filled[3]) {?>
+                        <span class="radiobuttons"> <input type="radio" name="gender" value="female"<?php if ($gender == "female") {echo ' checked';}?>>Female</span>
+                        <span class="radiobuttons"> <input type="radio" name="gender" value="male"<?php if ($gender == "male") {echo ' checked';}?>>Male</span>
+					    <br>
                     <?php } 
                     else {?>
-                    <span class="radiobuttons"> <input type="radio" name="gender" value="female" class="hightlight">Female</span>
-                    <span class="radiobuttons"> <input type="radio" name="gender" value="male" class="hightlight">Male</span>
-					<br><?php
+                        <span class="radiobuttons"> <input type="radio" name="gender" value="female" class="hightlight">Female</span>
+                        <span class="radiobuttons"> <input type="radio" name="gender" value="male" class="hightlight">Male</span>
+					    <br><?php
 					}
-                    if ($filled[4] == true) {
+                    if ($filled[4]) {
                         Subscription::listMagazines($ktmagazines);
                         ?><br /><?php
                     }

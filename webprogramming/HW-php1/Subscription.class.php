@@ -12,7 +12,7 @@ class Subscription {
 					    </div><?php
 		}
     }
-    public function subscribe($magazine_id, $email) {
+    public static function subscribe($magazine_id, $email) {
         if (!isset(self::$subscribers[$magazine_id])) {
             self::$subscribers[$magazine_id] = array();
         }
