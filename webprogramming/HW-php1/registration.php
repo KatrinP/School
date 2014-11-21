@@ -16,7 +16,7 @@
     
 include 'Magazine.class.php';
 include 'Subscription.class.php';
-$permittedperiod = [6, 12, 18, 24];
+$permittedperiod = array(6, 12, 18, 24);
    
 if (!isset($_POST['submit'])) {
     echo '
