@@ -1,0 +1,94 @@
+
+body, html {
+	text-align: center;
+	background-color: #FEFEFE;
+	font-family: Tahoma, sans-serif;
+	margin: 0px;
+	height: 100%;
+	font-size: 16px;
+}
+
+#all {
+	min-height: 100%;
+	position:relative;
+}
+
+#header {
+    border-bottom: thick white dotted;
+    padding : 20px;
+    background-color: orange;
+    min-height: 150px;
+}
+
+#content {
+    padding: 20px;
+    padding-bottom: 140px; #for footer;
+    background-color: #FEFEFE;
+
+    overflow: auto;  
+}
+#footer {
+    clear: both;
+    border-top: thick dotted #FEFEFE;
+    padding: 10px 0px 10px 0px;
+    margin-top: 20px;
+    min-height: 100px;  
+    width: 100%;
+    background-color: #333333;
+    color: white;
+    position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
+.wholecard {
+    display: inline-block; 
+        margin: 10px; 
+}
+
+.back {
+    width: 100px;
+    height: 100px;
+    background-color: lightgray;
+    /*margin: 10px;*/
+    display: inline-block; 
+
+    border: solid 4px orange;
+}
+
+.front {
+    width: 100px;
+    height: 100px;
+
+    /*margin: 10px;*/
+    display: inline-block;
+}
+
+.hiden {
+    display: none;
+}
+
+.turned {
+    visibility: visible;
+}
+
+.picture {
+    width: 100px;
+    height: 100px;
+    vertical-align: initial;
+}
+
+
+h1 {
+    color: dimgrey;
+    font-weight: bold;
+}
+
+#footer a {
+    color: orange;
+}
+
+#slogan {
+    color: white;
+    font-weight: bold
+}

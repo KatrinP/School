@@ -1,0 +1,159 @@
+@import url(http://fonts.googleapis.com/css?family=Audiowide);
+
+body {
+	text-align: center;
+	background-color: WhiteSmoke;
+	font-family: Tahoma, sans-serif;
+	margin: 0px;
+	height: 100%;
+	padding: 0px;
+	    overflow: auto;  
+}
+
+#header {
+    border-bottom: thick white dotted;
+    padding : 20px;
+    background-color: dimgray;
+}
+
+#content {
+    padding: 20px;
+    padding-bottom: 140px; #for footer;
+    background-color: #FEFEFE;
+
+    overflow: auto;  
+}
+#footer {
+    clear: both;
+    border-top: thick dotted #FEFEFE;
+    padding: 10px 0px 10px 0px;
+    margin-top: 20px;
+    min-height: 100px;  
+    width: 100%;
+    background-color: #333333;
+    color: white;
+    position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
+#footer a {
+    color: darkorange;
+    font-weight: bold; 
+}
+
+#all {
+	min-height: 100%;
+	position: relative;
+}
+
+h1 {
+    font-family: 'Audiowide', cursive;
+    font-weight: bold; 
+    color: white;
+    
+}
+
+#slogan {
+    font-family: 'Audiowide', cursive;
+    font-size: 18px;
+    color: white;
+}
+
+#albums {
+    float: left;
+    min-width: 25%;
+    /*display: inline-block;*/
+    margin-left: 20%;
+    margin-top: 20px;
+}
+
+#albums table {
+    margin-top: 15px;
+    padding: 15px 25px 15px 25px;
+    border-spacing: 0px;
+    border-collapse:collapse;
+}
+
+#albums table tr {
+    border: 3px;
+    border-bottom: thin gray dotted;
+    border-left: 0px;
+    border-right: 0px;
+    border-top: 0px;
+    
+}
+
+.click_row {
+    cursor: pointer;
+}
+
+.click_row:hover {
+    background: -webkit-linear-gradient(right, white,  #EEEEEE, white); 
+    background: -o-linear-gradient(left, wwhite,  #EEEEEE, white); 
+    background: -moz-linear-gradient(left, white,  #EEEEEE, white); 
+    background: linear-gradient(to left, white,  #EEEEEE, white); 
+}
+
+#albums table td {
+    padding: 5px 10px 5px 10px;
+
+}
+
+#selected_album {
+    /*display: inline-block;*/
+    float: right;
+    min-width: 45%;
+    margin-right: 10%;
+    margin-bottom: 20px;
+}
+
+#alb_picture {
+    float: left;   
+    padding: 20px;
+}
+
+#alb_info {
+    float: right;   
+    padding: 20px;
+}
+
+.cover_photo {
+    width: 300px;
+    height: 300px;
+    margin-top: 35px;
+}
+
+#total_length {
+    text-align: left;
+    font-weight: bold;
+    border-top: thin gray dotted;
+}
+
+#total_length_number {
+    font-weight: bold;
+    border-top: thin gray dotted;
+}
+
+#songs_table {
+    width: 300px;
+}
+
+#songs_table td {
+    padding: 0px 5px 0px 5px;
+}
+
+#songs_table th {
+    border-bottom: thin gray dotted;
+}
+
+#quote {
+    margin-top: 10%;
+    font-size: 20px;
+    font-style: italic;
+}
+
+#quote_author {
+    font-size: 20px;
+    font-weight: bold;
+}
